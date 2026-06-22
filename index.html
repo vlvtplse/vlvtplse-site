@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VLVT//PLSE — Velvet Pulse</title>
+  <meta name="description" content="Velvet Pulse — Live vocal house duo. Euphoric underground journeys. Ethereal vocals × emotional house.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:     #080808;
+      --offwhite:  #F0EDE8;
+      --sand:      #C8B89A;
+      --warm-dark: #111009;
+      --dim:       #7A766F;
+      --hairline:  #2A2520;
+      --body:      #B0A898;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--offwhite);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 48px;
+      height: 60px;
+      background: rgba(8,8,8,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 0.5px solid var(--hairline);
+    }
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--offwhite);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--sand); }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--offwhite); }
+
+    /* HERO */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('vlvtplse_banner_1.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(0.5);
+    }
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, transparent 60%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 52px 80px;
+    }
+    .hero-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .hero-title {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(56px, 10vw, 128px);
+      font-weight: 700;
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      color: var(--offwhite);
+      margin-bottom: 32px;
+    }
+    .hero-title span { color: var(--sand); }
+    .hero-tagline {
+      font-size: clamp(14px, 1.5vw, 18px);
+      font-weight: 300;
+      color: var(--body);
+      line-height: 1.6;
+      margin-bottom: 44px;
+      max-width: 440px;
+    }
+    .hero-cta {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--offwhite);
+      padding: 15px 36px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .hero-cta:hover { background: var(--sand); }
+
+    /* SECTIONS */
+    section { padding: 100px 52px; }
+    .section-label {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 52px;
+    }
+
+    /* ABOUT */
+    #about { border-top: 0.5px solid var(--hairline); }
+    .about-intro {
+      max-width: 680px;
+      font-size: clamp(16px, 1.7vw, 20px);
+      font-weight: 300;
+      color: var(--body);
+      line-height: 1.8;
+      margin-bottom: 80px;
+    }
+    .about-intro em { font-style: italic; color: var(--offwhite); }
+    .artists-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+    .artist-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      margin-bottom: 28px;
+      filter: grayscale(15%);
+    }
+    .artist-name {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 4px;
+    }
+    .artist-aka {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 20px;
+    }
+    .artist-bio {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--body);
+      line-height: 1.8;
+    }
+
+    /* MUSIC */
+    #music {
+      border-top: 0.5px solid var(--hairline);
+      background: var(--warm-dark);
+    }
+    .sc-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 72px 48px;
+      border: 0.5px solid var(--hairline);
+      text-align: center;
+      max-width: 720px;
+    }
+    .sc-waves {
+      display: flex;
+      gap: 4px;
+      align-items: flex-end;
+      height: 40px;
+      margin-bottom: 28px;
+      opacity: 0.3;
+    }
+    .sc-waves span {
+      display: block;
+      width: 3px;
+      background: var(--sand);
+      border-radius: 2px;
+    }
+    .sc-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 14px;
+    }
+    .sc-message {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--dim);
+      line-height: 1.6;
+    }
+    .sc-follow {
+      display: inline-block;
+      margin-top: 28px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--offwhite);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--hairline);
+      padding-bottom: 3px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .sc-follow:hover { border-color: var(--sand); color: var(--sand); }
+
+    /* GALLERY */
+    #gallery {
+      border-top: 0.5px solid var(--hairline);
+      padding-bottom: 72px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s;
+    }
+    .gallery-grid img:hover { opacity: 0.75; }
+    .gallery-grid .span-2 {
+      grid-column: span 2;
+      aspect-ratio: 2 / 1;
+    }
+    .photo-credit {
+      margin-top: 16px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--dim);
+    }
+
+    /* PRESS */
+    #press { border-top: 0.5px solid var(--hairline); }
+    .press-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+    .press-intro {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--body);
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+    .spec-list { list-style: none; }
+    .spec-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 13px 0;
+      border-bottom: 0.5px solid var(--hairline);
+      font-size: 13px;
+    }
+    .spec-key {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--dim);
+      min-width: 110px;
+    }
+    .spec-val { color: var(--body); text-align: right; }
+    .epk-btn {
+      display: inline-block;
+      margin-top: 36px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--offwhite);
+      border: 0.5px solid var(--hairline);
+      padding: 14px 28px;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .epk-btn:hover { border-color: var(--sand); color: var(--sand); }
+    .rider-block { margin-bottom: 32px; }
+    .rider-heading {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 14px;
+    }
+    .rider-list { list-style: none; }
+    .rider-list li {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--body);
+      padding: 9px 0;
+      border-bottom: 0.5px solid var(--hairline);
+      line-height: 1.5;
+    }
+
+    /* CONTACT */
+    #contact {
+      border-top: 0.5px solid var(--hairline);
+      background: var(--warm-dark);
+    }
+    .contact-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .contact-headline {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(20px, 2.5vw, 30px);
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--offwhite);
+      margin-bottom: 28px;
+    }
+    .contact-email {
+      font-family: 'Space Mono', monospace;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      color: var(--sand);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--sand);
+      padding-bottom: 3px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact-email:hover { color: var(--offwhite); border-color: var(--offwhite); }
+    .contact-note { margin-top: 16px; font-size: 13px; color: var(--dim); }
+    .mc-form h3 {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 24px;
+    }
+    .mc-fields { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+    .mc-input {
+      width: 100%;
+      background: transparent;
+      border: 0.5px solid var(--hairline);
+      padding: 14px 16px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      color: var(--offwhite);
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .mc-input::placeholder { color: var(--dim); }
+    .mc-input:focus { border-color: var(--sand); }
+    .mc-submit {
+      width: 100%;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: var(--offwhite);
+      color: var(--black);
+      border: none;
+      padding: 15px 28px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .mc-submit:hover { background: var(--sand); }
+    .mc-note { margin-top: 14px; font-size: 11px; color: var(--dim); line-height: 1.6; }
+
+    /* FOOTER */
+    footer {
+      padding: 28px 52px;
+      border-top: 0.5px solid var(--hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--offwhite);
+    }
+    .footer-logo span { color: var(--sand); }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--offwhite); }
+    .footer-copy { font-size: 11px; color: var(--dim); }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      section { padding: 72px 24px; }
+      .hero-content { padding: 0 24px 60px; }
+      .artists-grid { grid-template-columns: 1fr; gap: 56px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid .span-2 { grid-column: span 2; aspect-ratio: 16/9; }
+      .press-cols { grid-template-columns: 1fr; gap: 48px; }
+      .contact-cols { grid-template-columns: 1fr; gap: 48px; }
+      footer { flex-direction: column; gap: 20px; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">VLVT<span>//</span>PLSE</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#music">Music</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#press">Press</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Live Vocal House Duo · Worldwide</span>
+    <h1 class="hero-title">VLVT<span>//</span><br>PLSE</h1>
+    <p class="hero-tagline">Euphoric underground journeys.<br>Ethereal vocals × emotional house.</p>
+    <a href="#contact" class="hero-cta">Book Us</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <span class="section-label">01 — The Artists</span>
+  <div class="about-intro reveal">
+    <p>VLVT//PLSE came to life in the charged hours following the temple burn at LoveBurn, when Kirbie took the mic for the first time. What began as a single moment became a project, and a project became a mission — to build musical journeys that transform dancefloors into shared rituals of movement, emotion, and connection. Justin's architectural instinct behind the decks and Kirbie's rare contralto voice don't just complement each other. <em>They complete the pulse.</em></p>
+  </div>
+  <div class="artists-grid">
+    <div class="reveal">
+      <img src="kirbie_bio_crop.jpg" alt="Kirbie — Velvet" class="artist-photo">
+      <p class="artist-name">Kirbie</p>
+      <p class="artist-aka">aka Velvet</p>
+      <p class="artist-bio">Kirbie's contralto voice brings a rare warmth to the world of electronic music. Raised in Canada singing country music around campfires, she later sang in a rock band on a tiny Caribbean island before finding her way into the underground scene in Tulum. Sultry, rich, and deeply felt, her vocals don't sit on top of a set — they move through it, bringing a fun, feminine energy and pulling listeners into presence and emotion. Grounded enough to feel, light enough to carry you somewhere else.</p>
+    </div>
+    <div class="reveal">
+      <img src="justin_bio_crop.jpg" alt="Justin — Quantify" class="artist-photo">
+      <p class="artist-name">Justin</p>
+      <p class="artist-aka">aka Quantify</p>
+      <p class="artist-bio">Raised in Belgium during the emerging 90s rave scene and trained in piano from a young age, Justin arrived at electronic music from both ends — feeling it in rooms before he understood it, then learning to build it from the inside out. His sets move with architectural precision, weaving through genres and energy levels to create tension, release, and euphoria. An emerging Beatport artist with releases on Kitu Records, he has performed at Burning Man and iconic venues across Tulum, Chicago, and beyond.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section id="music">
+  <span class="section-label">02 — Music</span>
+  <div class="sc-block reveal">
+    <div class="sc-waves" aria-hidden="true">
+      <span style="height:20%"></span><span style="height:55%"></span><span style="height:35%"></span>
+      <span style="height:80%"></span><span style="height:45%"></span><span style="height:100%"></span>
+      <span style="height:60%"></span><span style="height:30%"></span><span style="height:75%"></span>
+      <span style="height:50%"></span><span style="height:90%"></span><span style="height:40%"></span>
+      <span style="height:65%"></span><span style="height:25%"></span><span style="height:85%"></span>
+      <span style="height:45%"></span><span style="height:70%"></span><span style="height:35%"></span>
+      <span style="height:55%"></span><span style="height:15%"></span>
+    </div>
+    <p class="sc-label">Music</p>
+    <p class="sc-message">New sounds coming soon.<br>Follow us to be the first to hear.</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <span class="section-label">03 — Gallery</span>
+  <div class="gallery-grid">
+    <img src="P1255435.jpg" alt="Velvet at Burning Man" class="span-2">
+    <img src="IMG_9477.jpg" alt="VLVT//PLSE performing live">
+    <img src="faa3381c-787e-452d-b9a7-57f8a9d20f32.JPG" alt="Behind the decks">
+    <img src="31b07540-e632-4b7e-ba23-a20316d6541a.JPG" alt="Quantify">
+    <img src="3a976b48-498f-44af-b515-a906d2a34ea5.jpg" alt="VLVT//PLSE">
+  </div>
+  <p class="photo-credit">Photography: Lourenso Ramautar / Out Of NY Studio · Hi-res files available on request</p>
+</section>
+
+<!-- PRESS -->
+<section id="press">
+  <span class="section-label">04 — Press & Tech Rider</span>
+  <div class="press-cols">
+    <div class="reveal">
+      <p class="press-intro">VLVT//PLSE is available for bookings worldwide. Full tech spec sheet available on request.</p>
+      <ul class="spec-list">
+        <li><span class="spec-key">Genre</span><span class="spec-val">Vocal House · Indie Dance</span></li>
+        <li><span class="spec-key">Format</span><span class="spec-val">Live DJ + Live Vocals</span></li>
+        <li><span class="spec-key">Set Length</span><span class="spec-val">60 / 90 / 120 min</span></li>
+        <li><span class="spec-key">Territory</span><span class="spec-val">Worldwide</span></li>
+        <li><span class="spec-key">Soundcheck</span><span class="spec-val">30 min advance required</span></li>
+      </ul>
+      <a href="VLVT_PLSE_EPK_v3.pdf" download class="epk-btn">&#8595; Download EPK</a>
+    </div>
+    <div class="reveal">
+      <div class="rider-block">
+        <p class="rider-heading">DJ Setup</p>
+        <ul class="rider-list">
+          <li>Pioneer CDJ-3000 x2 (CDJ-2000NXS2 or Denon SC6000 accepted)</li>
+          <li>Pioneer DJM-900NXS2 mixer</li>
+        </ul>
+      </div>
+      <div class="rider-block">
+        <p class="rider-heading">Microphone</p>
+        <ul class="rider-list">
+          <li>Shure SM58 or Beta 58A (wired)</li>
+          <li>Dedicated vocal channel on desk</li>
+          <li>Light hall reverb on vocal send</li>
+        </ul>
+      </div>
+      <div class="rider-block">
+        <p class="rider-heading">Monitor Mix</p>
+        <ul class="rider-list">
+          <li>Separate IEM mix for vocalist OR floor wedge stage left</li>
+          <li>Kick &amp; bass prominent in mix</li>
+        </ul>
+      </div>
+      <div class="rider-block">
+        <p class="rider-heading">Stage</p>
+        <ul class="rider-list">
+          <li>Minimum 2m x 2m behind DJ booth</li>
+          <li>Vocalist access to DJ booth · clear sightlines to crowd</li>
+          <li>Front-fill · no strobe (unless pre-agreed) · moving heads / haze welcome</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <span class="section-label">05 — Booking &amp; Updates</span>
+  <div class="contact-cols">
+    <div class="reveal">
+      <p class="contact-headline">Ready to feel something<br>on the dancefloor?</p>
+      <a href="mailto:bookings@vlvtplse.com" class="contact-email">bookings@vlvtplse.com</a>
+      <p class="contact-note">Bookings, collabs, and press inquiries.</p>
+    </div>
+    <div class="mc-form reveal">
+      <h3>Stay in the loop</h3>
+      <form action="https://vlvtplse.us1.list-manage.com/subscribe/post?u=7efc54016ad2c1ca72e6dbe82&amp;id=d5951c9118&amp;f_id=008475e1f0" method="post" target="_blank" novalidate>
+        <div class="mc-fields">
+          <input type="text" name="FNAME" placeholder="First name" class="mc-input">
+          <input type="email" name="EMAIL" placeholder="Email address" class="mc-input" required>
+        </div>
+        <div style="position:absolute;left:-5000px;" aria-hidden="true">
+          <input type="text" name="b_7efc54016ad2c1ca72e6dbe82_d5951c9118" tabindex="-1" value="">
+        </div>
+        <button type="submit" class="mc-submit">Join the pulse &rarr;</button>
+        <p class="mc-note">Gig announcements, new music, and moments from the dancefloor. No noise.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">VLVT<span>//</span>PLSE</span>
+  <div class="footer-links">
+    <a href="https://instagram.com/vlvtplse" target="_blank">Instagram</a>
+    <a href="https://youtube.com/@vlvtplse" target="_blank">YouTube</a>
+    <a href="mailto:bookings@vlvtplse.com">Booking</a>
+  </div>
+  <span class="footer-copy">&copy; 2026 Velvet Pulse &middot; vlvtplse.com</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => revealObserver.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--offwhite)' : 'var(--dim)';
+    });
+  });
+</script>
+
+</body>
+</html>
